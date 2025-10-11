@@ -11,8 +11,11 @@ class BubbleSort(tk.Tk):
 
         # Config
         self.geometry("800x500")
-        canvas = tk.Canvas(self, bg="brown")
+        self.title("Algorithm Visualizer")
+        canvas = tk.Canvas(self, bg="#2c2b3c")
         canvas.pack(fill=tk.BOTH, expand=True)
+
+        canvas.create_rectangle(100, 212.5, 175, 287.5, fill="white", outline="black", width=2)
 
 
 
