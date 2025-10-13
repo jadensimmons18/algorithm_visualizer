@@ -12,7 +12,7 @@ class Square():
         center_y = (y1 + y2) / 2
 
         # Draw the value in the center
-        canvas.create_text(center_x, center_y, text=str(val), font=("Arial", 14), fill="black")
+        canvas.create_text(center_x, center_y, text=str(val), font=("Arial", 14, "bold"), fill="black")
 
         # Store val and position
         self.val = val
