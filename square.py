@@ -18,4 +18,13 @@ class Square():
         self.val = val
         self.x1, self.y1, self.x2, self.y2 = x1, y1, x2, y2
 
+
+    def swap_squares(square1, square2):
+        tmp = square1.x1
+        square1.x1 = square2.x1
+        square2.x1 = tmp
+        tmp = square1.x2
+        square1.x2 = square2.x2
+        square2.x2 = tmp
+
         
