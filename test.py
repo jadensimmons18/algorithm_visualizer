@@ -18,7 +18,7 @@ class Animator:
 
         # animation state
         self.running = False
-        self.after_id = None
+        self.after_id = None # Stores the is that after() returns
 
         # Creates variable that will automatically link to widgets like slider
         self.speed = tk.DoubleVar(value=200.0)
@@ -46,9 +46,9 @@ class Animator:
         self.canvas.coords(self.box, 10, 120, 60, 170) # places the box at (x1,y1) = (10,120) and (x2,y2) = (60,170)
         self.canvas.coords(self.label, 35, 145) # Places the label inside of the box at (x1,y1) = (35,145)
         self.running = False 
-        if self.after_id:
-            self.root.after_cancel(self.after_id)
-            self.after_id = None
+        if self.after_id: 
+            self.root.after_cancel(self.after_id) # cancel the delay 
+            self.after_id = None # Reset the after() id to none
         self.pause_button.config(text="Pause", state="disabled")
 
     def start(self):
