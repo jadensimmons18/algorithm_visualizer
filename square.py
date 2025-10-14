@@ -23,6 +23,6 @@ class Square():
 
 
     def swap_squares(square1, square2):
-        
+        pass
 
         
