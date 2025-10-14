@@ -49,16 +49,16 @@ class Animator:
         if self.after_id: 
             self.root.after_cancel(self.after_id) # cancel the delay 
             self.after_id = None # Reset the after() id to none
-        self.pause_button.config(text="Pause", state="disabled")
+        self.pause_button.config(text="Pause", state="disabled") # Disables the pause/resume button once reset
 
     def start(self):
-        if self.running:
+        if self.running: # If its already running then do nothing when the start button is pressed
             return
         self.running = True
-        self.pause_button.config(state="normal")
+        self.pause_button.config(state="normal") # Enables the pause/resume button
         # time tracking for time-based movement
-        self.last_time = time.time()
-        self._animate()
+        self.last_time = time.time() # Creates a variable to keep track of the time
+        self._animate() # Calls the animate function
 
     def toggle_pause(self):
         if self.running:

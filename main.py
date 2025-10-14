@@ -28,7 +28,13 @@ class Main(tk.Tk):
             x1 += 80
             x2 += 80
 
+        self.start_button = tk.Button(
+            master=self,
+            text="Don't MF Press!!",
+            command=self.start
+        )
 
+    def start():
         in_order = False  # assume it's not sorted yet
         while not in_order:
             in_order = True  # assume it's sorted until proven otherwise
@@ -42,9 +48,6 @@ class Main(tk.Tk):
                     squares[i+1].val = tmp
 
                     in_order = False  # found a swap, so it's not sorted yet
-        
-        for i in squares:
-            print(i.val)
 
 
 if __name__ == "__main__":

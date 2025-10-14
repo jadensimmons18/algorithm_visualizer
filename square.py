@@ -4,8 +4,12 @@ import tkinter as tk
 class Square():
 
     def __init__(self, canvas, x1, y1, x2, y2, val):
-        canvas.create_rectangle(x1, y1, x2, y2,
+
+        # Create the square
+        self.id = canvas.create_rectangle(x1, y1, x2, y2, 
                                 fill="white", outline="black", width=2)
+
+        
         
         # Calculate the center of the square
         center_x = (x1 + x2) / 2
@@ -14,17 +18,11 @@ class Square():
         # Draw the value in the center
         canvas.create_text(center_x, center_y, text=str(val), font=("Arial", 14, "bold"), fill="black")
 
-        # Store val and position
+        # Store val
         self.val = val
-        self.x1, self.y1, self.x2, self.y2 = x1, y1, x2, y2
 
 
     def swap_squares(square1, square2):
-        tmp = square1.x1
-        square1.x1 = square2.x1
-        square2.x1 = tmp
-        tmp = square1.x2
-        square1.x2 = square2.x2
-        square2.x2 = tmp
+        
 
         
