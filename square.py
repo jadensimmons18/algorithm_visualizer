@@ -22,17 +22,15 @@ class Square():
         self.val = val
         self.x1, self.x2 = x1,x2
 
-    def swap_squares(square1, square2):
-        
-        square1_final_dx = (square2.center_x - square1.center_x)
-        square2_final_dx = (square1.center_x - square2.center_x)
+    def swap_squares(square1, square2, fps=60):
 
+        distance = (square2.center_x - square1.center_x) # Note: Both squares are equal distance
+        dx = distance / frames
 
-
-        square1.canvas.move(square1.id, speed, 0)
-        square2.canvas.move(square2.id, speed, 0)
-
-        swap_squares(square1, square2)
+        for i in range(fps):
+            square1.canvas.move(square1.tag, dx , 0)
+            square2.canvas.move(square2.tag, -dx , 0)
+            canvas.update()
         
 
         
