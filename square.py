@@ -12,17 +12,27 @@ class Square():
         
         
         # Calculate the center of the square
-        center_x = (x1 + x2) / 2
-        center_y = (y1 + y2) / 2
+        self.center_x = (x1 + x2) / 2
+        self.center_y = (y1 + y2) / 2
 
         # Draw the value in the center
-        canvas.create_text(center_x, center_y, text=str(val), font=("Arial", 14, "bold"), fill="black")
+        canvas.create_text(self.center_x, self.center_y, text=str(val), font=("Arial", 14, "bold"), fill="black")
 
         # Store val
         self.val = val
-
+        self.x1, self.x2 = x1,x2
 
     def swap_squares(square1, square2):
-        pass
+        speed = 10
+        square1_final_dx = (square2.center_x - square1.center_x)
+        square2_final_dx = (square1.center_x - square2.center_x)
+
+        
+
+        square1.canvas.move(square1.id, speed, 0)
+        square2.canvas.move(square2.id, speed, 0)
+
+        swap_squares(square1, square2)
+        
 
         

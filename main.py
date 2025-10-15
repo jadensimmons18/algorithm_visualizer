@@ -47,7 +47,7 @@ class Main(tk.Tk):
 
             for i in range(len(squares) - 1):
                 if squares[i].val > squares[i+1].val:
-                    #swap_squares(squares[i], squares[i+1])
+                    squares[i].swap_squares(squares[i], squares[i+1])
                     # swap the two
                     tmp = squares[i].val
                     squares[i].val = squares[i+1].val

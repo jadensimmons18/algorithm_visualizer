@@ -81,18 +81,20 @@ class Animator:
 
     def _animate(self):
         """Internal animation step — moves toward target using time-based speed."""
-        now = time.time()
-        dt = now - self.last_time
-        self.last_time = now
+        now = time.time() # Current time
+        dt = now - self.last_time # How much time has passed since the last frame
+        self.last_time = now # sets the last_time to the new cur time
 
-        speed = self.speed.get()  # pixels per second
+
+
+        speed = self.speed.get()  # gets the speed from the slider
         dx = speed * dt           # how many pixels to move this frame
 
+
+
         cx, cy = self._get_box_center()
-        # move right until the center reaches target_x
-        if cx + dx >= self.target_x:
-            # snap to target and stop
-            # compute exact final dx
+
+        if cx + dx >= self.target_x: # If it passes the target move it back
             final_dx = self.target_x - cx
             self.canvas.move("box", final_dx, 0)
             self.running = False
