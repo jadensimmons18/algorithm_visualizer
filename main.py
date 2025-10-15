@@ -36,7 +36,7 @@ class Main(tk.Tk):
         squares = []
         for i in range(10):
             squares.append(Square(self.canvas, x1, y1, x2,
-                           y2, random.randint(1, 99)))
+                           y2, random.randint(1, 99), i))
             x1 += 80
             x2 += 80
 
