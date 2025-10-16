@@ -29,17 +29,26 @@ class TestSquare():
         canvas.create_text(self.center_x, self.center_y, text=str(
             self.val), font=("Arial", 14, "bold"), fill="black", tags=(tag,))
 
+    def animate(self, dx):
 
-    def animate(self,dx):
-        x1,y1,x2,y2 = self.canvas.coords(self.id)
-        starting_center = self.center_x
-        now_center = (x1 + x2) / 2
-        now_distance = now_center - starting_center
+        x1, y1, x2, y2 = self.canvas.coords(self.id) # Store current coordinates of the square
+        starting_center = self.center_x # Create var to old the original center of the square
+        now_center = (x1 + x2) / 2 # Calculate the current center of the square
+        now_distance = now_center - starting_center # Calculate the current distance between current center and starting center
 
-        if (now_distance >= dx):
-            return
-        self.canvas.move(self.tag, 1, 0)
-        self.canvas.after(60, self.animate,dx)
+        # If dx is negative
+        if (dx < 0):
+            movement = -2
+            if (now_distance <= dx):
+                return
+        # Else if dx is positive
+        elif (dx > 0):
+            movement = 2
+            if (now_distance >= dx):
+                return
+
+        self.canvas.move(self.tag, movement, 0)
+        self.canvas.after(60, self.animate, dx)
 
 
 def main():
@@ -51,10 +60,10 @@ def main():
 
     # Create squares
     square1 = TestSquare(canvas, 375, 225, 425, 275, "square1")
-    square2 = TestSquare(canvas,445,225,495,275, "square2")
+    square2 = TestSquare(canvas, 445, 225, 495, 275, "square2")
 
     # Calculate dx (Total Distance)
-    dx =  square2.center_x - square1.center_x
+    dx = square2.center_x - square1.center_x
 
     # Animate
     square1.animate(dx)
