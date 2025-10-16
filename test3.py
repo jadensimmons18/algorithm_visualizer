@@ -31,7 +31,14 @@ class TestSquare():
 
 
     def animate(self,dx):
-        self.canvas.move(self.tag, 10, 0)
+        x1,y1,x2,y2 = self.canvas.coords(self.id)
+        starting_center = self.center_x
+        now_center = (x1 + x2) / 2
+        now_distance = now_center - starting_center
+
+        if (now_distance >= dx):
+            return
+        self.canvas.move(self.tag, 1, 0)
         self.canvas.after(60, self.animate,dx)
 
 
