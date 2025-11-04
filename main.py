@@ -1,7 +1,6 @@
 import tkinter as tk
 import random
 from square import Square
-#from square import swap_squares
 
 
 class Main(tk.Tk):
@@ -16,6 +15,7 @@ class Main(tk.Tk):
         self.canvas = tk.Canvas(self, bg="#2c2b3c")
         self.canvas.pack(fill=tk.BOTH, expand=True)
 
+        # Bubble Sort Button
         self.start_button = tk.Button(
             master=self,
             text="Press To Begin Bubble Sort",
@@ -23,37 +23,68 @@ class Main(tk.Tk):
         )
         self.start_button.place(x = 400, y = 250, anchor="center")
 
+        # Squares array
+        self.squares = []
+
+        # Variables
+        self.sorted = False
 
     def start_pressed(self):
-
         self.start_button.place_forget()
+        self.draw_squares()
+        self.BubbleSort() # Start first pass
 
+    def draw_squares(self):
         # Generate the squares with random values
         x1 = 10  # Initiate x1 at position 20
         y1 = 220
         x2 = 70  # Initiate x2 at position 80
         y2 = 280
-        squares = []
         for i in range(10):
-            squares.append(Square(self.canvas, x1, y1, x2,
+            self.squares.append(Square(self.canvas, x1, y1, x2,
                            y2, random.randint(1, 99), i))
+            print(self.squares[i].val, end=" ")
             x1 += 80
             x2 += 80
 
-        # Sort + call animation
-        in_order = False  # assume it's not sorted yet
-        while not in_order:
-            in_order = True  # assume it's sorted until proven otherwise
+    # Resets all variables and calls a single bubble sort pass
+    def BubbleSort(self):
+        self.curIndex = 0
+        self.single_pass()
+        
 
-            for i in range(len(squares) - 1):
-                if squares[i].val > squares[i+1].val:
-                    squares[i].swap_squares(squares[i], squares[i+1])
-                    # swap the two
-                    tmp = squares[i].val
-                    squares[i].val = squares[i+1].val
-                    squares[i+1].val = tmp
+    def single_pass(self):
 
-                    in_order = False  # found a swap, so it's not sorted yet
+        for i in self.squares:
+            print(i.val, end=" ")
+
+        
+        if not self.sorted: # Only run if the array is not already sorted
+
+            if (curIndex == 0): # Only run at the start of the pass
+                self.sorted = True # assume its sorted until proved otherwise
+
+            if self.curIndex >= len(self.squares) - 1: # If you reach the end of the array
+                if self.sorted == True: # Array is sorted
+                    print("Bubble Sort Complete")
+                    return
+                else: # Array is not sorted so call another pass
+                    self.curIndex = 0
+                    self.after(100, self.single_pass)
+                    return
+
+            if self.squares[self.curIndex].val > self.squares[self.curIndex + 1].val:
+                self.sorted = False # Found something out of order
+                tmp = self.squares[self.curIndex]
+                self.squares[self.curIndex] = self.squares[self.curIndex + 1]
+                self.squares[self.curIndex + 1] = tmp
+                self.after(100, self.single_pass)
+                return
+
+            else: # If the current index doesnt need to be swapped then call another pass
+                self.curIndex += 1
+                self.after(100, self.single_pass)
+                return
 
 if __name__ == "__main__":
     app = Main()

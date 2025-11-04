@@ -10,7 +10,7 @@ class Square():
                                 fill="white", outline="black", width=2)
 
         self.tag = f"box{tag}"
-        
+
         # Calculate the center of the square
         self.center_x = (x1 + x2) / 2
         self.center_y = (y1 + y2) / 2
@@ -21,16 +21,6 @@ class Square():
         # Store val
         self.val = val
         self.x1, self.x2 = x1,x2
-
-    def swap_squares(square1, square2, fps=60):
-
-        distance = (square2.center_x - square1.center_x) # Note: Both squares are equal distance
-        dx = distance / frames
-
-        for i in range(fps):
-            square1.canvas.move(square1.tag, dx , 0)
-            square2.canvas.move(square2.tag, -dx , 0)
-            canvas.update()
         
 
         

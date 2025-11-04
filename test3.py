@@ -3,7 +3,6 @@ import random
 
 # Practice with animating a square
 
-
 class TestSquare():
 
     def __init__(self, canvas, x1, y1, x2, y2, tag):
@@ -30,9 +29,8 @@ class TestSquare():
             self.val), font=("Arial", 14, "bold"), fill="black", tags=(tag,))
 
     def animate(self, dx):
-
         x1, y1, x2, y2 = self.canvas.coords(self.id) # Store current coordinates of the square
-        starting_center = self.center_x # Create var to old the original center of the square
+        starting_center = self.center_x # Create var to hold the original center of the square
         now_center = (x1 + x2) / 2 # Calculate the current center of the square
         now_distance = now_center - starting_center # Calculate the current distance between current center and starting center
 
