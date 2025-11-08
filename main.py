@@ -46,10 +46,12 @@ class Main(tk.Tk):
             print(self.squares[i].val, end=" ")
             x1 += 80
             x2 += 80
+        print() # Newline
 
     # Resets all variables and calls a single bubble sort pass
     def BubbleSort(self):
         self.curIndex = 0
+        self.sorted = False
         self.single_pass()
         
 
@@ -57,11 +59,11 @@ class Main(tk.Tk):
 
         for i in self.squares:
             print(i.val, end=" ")
-
-        
+        print() # NewLine
+    
         if not self.sorted: # Only run if the array is not already sorted
 
-            if (curIndex == 0): # Only run at the start of the pass
+            if (self.curIndex == 0): # Only run at the start of the pass
                 self.sorted = True # assume its sorted until proved otherwise
 
             if self.curIndex >= len(self.squares) - 1: # If you reach the end of the array
@@ -73,11 +75,12 @@ class Main(tk.Tk):
                     self.after(100, self.single_pass)
                     return
 
-            if self.squares[self.curIndex].val > self.squares[self.curIndex + 1].val:
+            if self.squares[self.curIndex].val > self.squares[self.curIndex + 1].val: # if current square is bigger than next square
                 self.sorted = False # Found something out of order
                 tmp = self.squares[self.curIndex]
                 self.squares[self.curIndex] = self.squares[self.curIndex + 1]
                 self.squares[self.curIndex + 1] = tmp
+                self.curIndex += 1
                 self.after(100, self.single_pass)
                 return
 
