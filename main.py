@@ -28,6 +28,7 @@ class Main(tk.Tk):
 
         # Variables
         self.sorted = False
+        self.swapped = False
 
     def start_pressed(self):
         self.start_button.place_forget()
@@ -64,11 +65,12 @@ class Main(tk.Tk):
         if not self.sorted: # Only run if the array is not already sorted
 
             if (self.curIndex == 0): # Only run at the start of the pass
-                self.sorted = True # assume its sorted until proved otherwise
+                self.swapped = False # assume its sorted until proved otherwise
 
             if self.curIndex >= len(self.squares) - 1: # If you reach the end of the array
-                if self.sorted == True: # Array is sorted
+                if self.swapped == False: # Array is sorted
                     print("Bubble Sort Complete")
+                    self.sorted = True
                     return
                 else: # Array is not sorted so call another pass
                     self.curIndex = 0
@@ -76,7 +78,7 @@ class Main(tk.Tk):
                     return
 
             if self.squares[self.curIndex].val > self.squares[self.curIndex + 1].val: # if current square is bigger than next square
-                self.sorted = False # Found something out of order
+                self.swapped = True # Found something out of order
                 tmp = self.squares[self.curIndex]
                 self.squares[self.curIndex] = self.squares[self.curIndex + 1]
                 self.squares[self.curIndex + 1] = tmp
