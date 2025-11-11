@@ -83,6 +83,7 @@ class Main(tk.Tk):
                 self.squares[self.curIndex] = self.squares[self.curIndex + 1]
                 self.squares[self.curIndex + 1] = tmp
                 self.curIndex += 1
+                self.animate_swap(self.squares[self.curIndex], self.squares[self.curIndex + 1]) #Call the animation on both squares
                 self.after(100, self.single_pass)
                 return
 
@@ -90,6 +91,34 @@ class Main(tk.Tk):
                 self.curIndex += 1
                 self.after(100, self.single_pass)
                 return
+
+    def animate_swap(self, square1, square2):
+
+        distance = square2.center_x - square1.center_x # = 80
+        frames = 10
+        movement_per_frame = distance / frames
+
+        self.animation(square1, square2, movement_per_frame, distance)
+
+    def animation(self, square1, square2, movement, total_distance):
+
+        coords = self.canvas.coords(self.square1.id)
+        x1, y1, x2, y2 = coords
+        square1_current_center = (x1 + x2) / 2
+
+        if square1_current_center >= square2.center_x:
+            return
+
+        coords = self.canvas.coords(self.square2.id)
+        x1, y1, x2, y2 = coords
+        square2_current_center = (x1 + x2) / 2
+
+        if square2_current_center <= square1.center_x:
+            return
+
+        self.canvas.move(square1.tag, movement, 0)
+        self.canvas.move(square2.tag, -movement, 0)
+        self.canvas.after(100, self.animate, dx)
 
 if __name__ == "__main__":
     app = Main()
